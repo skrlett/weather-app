@@ -6,6 +6,7 @@
 `VITE_WEATHER_API_KEY = ***********************`   
 `VITE_GEO_LOCATION_API_KEY = ******************`
 5. run: `npm run dev`
+6. to run tests: `npm test`
 
 ## How to use
 <img width="1239" alt="image" src="https://github.com/user-attachments/assets/22d63867-3779-4f31-960f-8eaa481e14ac">
