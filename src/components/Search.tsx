@@ -25,7 +25,7 @@ export default function Search({
   const { error, handleError } = ErrorHandler();
 
   const loadCities = async (inputSearchValue: string) => {
-    const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${inputSearchValue}&limit=10`;
+    const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?minPopulation=100000&namePrefix=${inputSearchValue}&limit=10`;
     const options = {
       method: "GET",
       headers: {
