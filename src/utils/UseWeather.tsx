@@ -9,10 +9,12 @@ export const useWeather = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [initialLoading, setInitialLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [darkMode, setDarkMode] = useState<boolean>(true);
+  const [LatLang, setLatLang] = useState<string>("0 0");
 
   const getLatLang = async (latlang: string) => {
     const [lat, lon, city] = latlang.split("#");
+    setLatLang(`${lat} ${lon}`);
     setInitialLoading(false);
 
     try {
@@ -73,6 +75,7 @@ export const useWeather = () => {
     getLatLang,
     handleThemeChange,
     darkMode,
+    LatLang,
   };
 };
 

@@ -7,6 +7,7 @@ import LoadingScreen from "../utils/LoadingScreen";
 import useWeather from "../utils/UseWeather";
 import ErrorPage from "./ErrorPage";
 import WeatherShowcase from "./WeatherShowcase";
+import WeatherHistoy from "./WeatherHistoy";
 
 const HomePage = () => {
   const {
@@ -18,6 +19,7 @@ const HomePage = () => {
     loading,
     error,
     getLatLang,
+    LatLang,
   } = useWeather();
 
   const darkTheme = createTheme({
@@ -46,7 +48,10 @@ const HomePage = () => {
         ) : error ? (
           <ErrorPage error={error} />
         ) : (
-          <WeatherShowcase weatherData={weatherData} city={city} />
+          <>
+            <WeatherShowcase weatherData={weatherData} city={city} />
+            <WeatherHistoy latlang={LatLang}/>
+          </>
         )}
       </Grid>
     </ThemeProvider>

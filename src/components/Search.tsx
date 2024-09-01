@@ -38,8 +38,6 @@ export default function Search({
       const response = await fetch(url, options);
       const result = await response.json();
 
-      console.log(result);
-
       if (result === null) throw "Invalid API";
 
       const cities = result.data;

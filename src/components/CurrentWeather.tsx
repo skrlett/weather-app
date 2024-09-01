@@ -1,9 +1,8 @@
 import { Stack, Typography } from "@mui/material";
+import { k2f } from "../utils/utils";
 
 const CurrentWeather = ({ weatherData, city }) => {
   let [cityName, region]: string = city.split(", ");
-
-  const k2f = (K: number) => Math.round((K - 273.15) * 1.8 + 32);
 
   return (
     <div style={{ width: "25%" }}>
