@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { openWeatherApiKey } from "../utils/api";
+import { openWeatherApiKey, WeatherData } from "../utils/api";
 
 const TTL = 60 * 60 * 1000; // Cache time: 1 hour
 
 export const useWeather = () => {
-  const [weatherData, setWeatherData] = useState<any>(null);
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [city, setCity] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const [initialLoading, setInitialLoading] = useState<boolean>(true);

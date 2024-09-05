@@ -1,7 +1,14 @@
 import { DarkMode, WbSunnyOutlined } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 
-const DarkModeToggle = ({ themeChange, mode }) => {
+interface DarkModeToggleProps {
+  themeChange: any;
+  mode: boolean;
+}
+const DarkModeToggle: React.FC<DarkModeToggleProps> = ({
+  themeChange,
+  mode,
+}) => {
   return (
     <IconButton
       onClick={() => {
