@@ -1,8 +1,14 @@
 import { Stack, Typography } from "@mui/material";
 import { k2f } from "../utils/utils";
+import { WeatherData } from "../utils/api";
 
-const CurrentWeather = ({ weatherData, city }) => {
-  let [cityName, region]: string = city.split(", ");
+interface weatherDataProps {
+  weatherData: WeatherData;
+  city: string;
+}
+
+const CurrentWeather: React.FC<weatherDataProps> = ({ weatherData, city }) => {
+  let cityName: string = city.split(", ")[0];
 
   return (
     <div style={{ width: "25%" }}>
@@ -25,8 +31,8 @@ const CurrentWeather = ({ weatherData, city }) => {
             width: "70%",
           }}
         >
-          <Typography>{`H:${k2f(weatherData.main.temp_min)}°`}</Typography>
-          <Typography>{`L:${k2f(weatherData.main.temp_max)}°`}</Typography>
+          <Typography>{`H:${k2f(weatherData.main.temp_max)}°`}</Typography>
+          <Typography>{`L:${k2f(weatherData.main.temp_min)}°`}</Typography>
         </div>
       </Stack>
     </div>

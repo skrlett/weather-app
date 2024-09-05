@@ -1,8 +1,17 @@
 import { Grid } from "@mui/material";
 import CurrentWeather from "./CurrentWeather";
 import WeatherIcon from "../utils/WeatherIcon";
+import { WeatherData } from "../utils/api";
 
-const WeatherShowcase = ({ weatherData, city }) => {
+interface weatherShowcaseProps {
+  weatherData: WeatherData;
+  city: string;
+}
+
+const WeatherShowcase: React.FC<weatherShowcaseProps> = ({
+  weatherData,
+  city,
+}) => {
   return (
     <Grid item xs={12}>
       <div

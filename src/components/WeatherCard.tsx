@@ -1,14 +1,29 @@
-import { Card, CardContent, Typography, SvgIcon, Stack } from "@mui/material";
+import { Card, CardContent, Typography, Stack } from "@mui/material";
 import WeatherIcon from "../utils/WeatherIcon";
 
-const WeatherCard = ({ weatherType, high, low, pressure, humidity, date }) => {
+interface weatherCardProps {
+  weatherType: string;
+  high: number;
+  low: number;
+  pressure: number;
+  humidity: number;
+  date: string;
+}
+
+const WeatherCard: React.FC<weatherCardProps> = ({
+  weatherType,
+  high,
+  low,
+  pressure,
+  humidity,
+  date,
+}) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardContent>
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
           {date}
         </Typography>
-        {/* <SvgIcon component={WbSunnyOutlined} sx={{ fontSize: "12rem" }} /> */}
         <WeatherIcon weatherType={weatherType} />
         <Typography gutterBottom variant="h5" component="div">
           {weatherType}

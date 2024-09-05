@@ -1,12 +1,14 @@
-import { Grid, Stack } from "@mui/material";
+import { Grid } from "@mui/material";
 import WeatherCard from "./WeatherCard";
 import React from "react";
-import { openWeatherApiKey } from "../utils/api";
+import { ListItem, openWeatherApiKey, WeatherHistoryData } from "../utils/api";
 import LoadingScreen from "../utils/LoadingScreen";
 import { dateToWeekday, k2f } from "../utils/utils";
 
 const WeatherHistoy = ({ latlang }: { latlang: string }) => {
-  const [weatherHistory, setWeatherHistory] = React.useState<any | null>(null);
+  const [weatherHistory, setWeatherHistory] = React.useState<ListItem[] | null>(
+    null
+  );
   const [loading, setLoading] = React.useState(false);
   React.useEffect(() => {
     const getWeatherHistory = async (latlang: string) => {
@@ -19,13 +21,15 @@ const WeatherHistoy = ({ latlang }: { latlang: string }) => {
           `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}`
         );
 
-        const historyJSON = await history.json();
+        const historyJSON: WeatherHistoryData = await history.json();
+
+        console.log(historyJSON)
 
         // process weather data
         const uniqueDates = new Set();
-        let historyData: any[] = [];
+        let historyData: ListItem[] = [];
 
-        historyJSON.list.map((obj: any) => {
+        historyJSON.list.map((obj: ListItem) => {
           const date = obj.dt_txt.split(" ")[0];
 
           if (!uniqueDates.has(date)) {
@@ -46,10 +50,10 @@ const WeatherHistoy = ({ latlang }: { latlang: string }) => {
   }, [latlang]);
 
   // let's add weather card component
-  let weatherCards: any[] = [];
+  let weatherCards: any = [];
   if (weatherHistory) {
-    weatherCards = weatherHistory.map((obj) => (
-      <Grid item sm={6} md={4} lg={3}>
+    weatherCards = weatherHistory.map((obj: ListItem) => (
+      <Grid item sm={6} md={4} lg={3} key={Math.random()}>
         <WeatherCard
           high={k2f(obj.main.temp_max)}
           low={k2f(obj.main.temp_min)}
@@ -73,7 +77,7 @@ const WeatherHistoy = ({ latlang }: { latlang: string }) => {
         alignItems: "center",
       }}
     >
-      {loading ? <LoadingScreen /> : weatherCards.map((obj) => obj)}
+      {loading ? <LoadingScreen /> : weatherCards.map((obj: any) => obj)}
     </Grid>
   );
 };
