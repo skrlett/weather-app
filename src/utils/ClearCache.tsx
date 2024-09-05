@@ -1,10 +1,5 @@
 import DeleteForever from "@mui/icons-material/DeleteForever";
-import {
-  colors,
-  IconButton,
-  Snackbar,
-  SnackbarCloseReason,
-} from "@mui/material";
+import { IconButton, Snackbar, SnackbarCloseReason } from "@mui/material";
 import React from "react";
 
 const ClearCache = () => {
@@ -16,7 +11,7 @@ const ClearCache = () => {
   };
 
   const handleClose = (
-    event: React.SyntheticEvent | Event,
+    _event: React.SyntheticEvent | Event,
     reason?: SnackbarCloseReason
   ) => {
     if (reason === "clickaway") {
