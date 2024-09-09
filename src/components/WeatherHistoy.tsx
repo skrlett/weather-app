@@ -3,10 +3,10 @@ import WeatherCard from "./WeatherCard";
 import { ListItem } from "../utils/api";
 import LoadingScreen from "../utils/LoadingScreen";
 import { dateToWeekday, k2f } from "../utils/utils";
-import UseWeatherHistory from "../utils/UseWeatherHistory";
+import useWeatherHistory from "../utils/useWeatherHistory";
 
 const WeatherHistoy = ({ latlang }: { latlang: string }) => {
-  const { weatherHistory, loading } = UseWeatherHistory({ latlang });
+  const { weatherHistory, loading } = useWeatherHistory({ latlang });
   let weatherCards: any = [];
   if (weatherHistory) {
     weatherCards = weatherHistory.map((obj: ListItem) => (

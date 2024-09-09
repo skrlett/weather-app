@@ -1,7 +1,7 @@
 import React from "react";
-import { openWeatherApiKey, ListItem, WeatherHistoryData } from "../utils/api";
+import { openWeatherApiKey, ListItem, WeatherHistoryData } from "./api";
 
-const UseWeatherHistory = ({ latlang }: { latlang: string }) => {
+const useWeatherHistory = ({ latlang }: { latlang: string }) => {
   const [weatherHistory, setWeatherHistory] = React.useState<ListItem[] | null>(
     null
   );
@@ -46,4 +46,4 @@ const UseWeatherHistory = ({ latlang }: { latlang: string }) => {
   return { weatherHistory, loading };
 };
 
-export default UseWeatherHistory;
+export default useWeatherHistory;

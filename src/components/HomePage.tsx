@@ -4,7 +4,7 @@ import ClearCache from "../utils/ClearCache";
 import DarkModeToggle from "../utils/DarkModeToggle";
 import InitialScreen from "../utils/InitialScreen";
 import LoadingScreen from "../utils/LoadingScreen";
-import useWeather from "../utils/UseWeather";
+import useWeather from "../utils/useWeather";
 import ErrorPage from "./ErrorPage";
 import WeatherShowcase from "./WeatherShowcase";
 import WeatherHistoy from "./WeatherHistoy";
