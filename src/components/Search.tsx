@@ -1,17 +1,8 @@
-import * as React from "react";
+import React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import { geoLocApiKey } from "../utils/api";
 import ErrorPage from "./ErrorPage";
-import ErrorHandler from "./ErrorHandler";
-
-interface CityData {
-  city: string;
-  countryCode: string;
-  regionCode: string;
-  latitude: number;
-  longitude: number;
-}
+import useCities from "../utils/useCities";
 
 export default function Search({
   getLatLang,
@@ -20,38 +11,8 @@ export default function Search({
 }) {
   const [value, setValue] = React.useState(null);
   const [inputSearchValue, setInputSearchValue] = React.useState("");
-  const [cities, setCities] = React.useState([]);
-  const [response, setResponse] = React.useState<CityData[] | null>(null);
 
-  const { error, handleError } = ErrorHandler();
-
-  const loadCities = async (inputSearchValue: string) => {
-    const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?minPopulation=100000&namePrefix=${inputSearchValue}&limit=10`;
-    const options = {
-      method: "GET",
-      headers: {
-        "x-rapidapi-key": geoLocApiKey,
-        "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
-      },
-    };
-
-    try {
-      const response = await fetch(url, options);
-      const result = await response.json();
-
-      if (result === null) throw "Invalid API";
-
-      const cities = result.data;
-      setResponse(cities);
-      setCities(
-        cities.map(
-          (ob: any) => `${ob.city}, ${ob.regionCode}, ${ob.countryCode}`
-        )
-      );
-    } catch (error) {
-      handleError(error);
-    }
-  };
+  const { cities, response, error, loadCities } = useCities();
 
   const handleInputOnChange = (_event: any, searchCity: string) => {
     setInputSearchValue(searchCity);
