@@ -22,6 +22,7 @@ export default function Search({
   const [inputSearchValue, setInputSearchValue] = React.useState("");
   const [cities, setCities] = React.useState([]);
   const [response, setResponse] = React.useState<CityData[] | null>(null);
+
   const { error, handleError } = ErrorHandler();
 
   const loadCities = async (inputSearchValue: string) => {

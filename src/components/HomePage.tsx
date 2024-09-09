@@ -49,8 +49,10 @@ const HomePage = () => {
           <ErrorPage error={error} />
         ) : (
           <>
-            <WeatherShowcase weatherData={weatherData} city={city} />
-            <WeatherHistoy latlang={LatLang}/>
+            {weatherData && (
+              <WeatherShowcase weatherData={weatherData} city={city} />
+            )}
+            <WeatherHistoy latlang={LatLang} />
           </>
         )}
       </Grid>
