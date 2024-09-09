@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { openWeatherApiKey, WeatherData } from "../utils/api";
+import { openWeatherApiKey, WeatherData } from "./api";
 
 const TTL = 60 * 60 * 1000; // Cache time: 1 hour
 

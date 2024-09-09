@@ -48,12 +48,6 @@ const WeatherIcon = ({ weatherType }: { weatherType: string }) => {
       );
       break;
 
-    case "Extreme":
-      weatherIcon = (
-        <StormOutlined style={{ fontSize: "12rem", color: "gray" }} />
-      );
-      break;
-
     default:
       weatherIcon = (
         <WbSunnyOutlined style={{ fontSize: "12rem", color: "orange" }} />
