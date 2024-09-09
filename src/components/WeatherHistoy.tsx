@@ -1,55 +1,12 @@
 import { Grid } from "@mui/material";
 import WeatherCard from "./WeatherCard";
-import React from "react";
-import { ListItem, openWeatherApiKey, WeatherHistoryData } from "../utils/api";
+import { ListItem } from "../utils/api";
 import LoadingScreen from "../utils/LoadingScreen";
 import { dateToWeekday, k2f } from "../utils/utils";
+import UseWeatherHistory from "../utils/UseWeatherHistory";
 
 const WeatherHistoy = ({ latlang }: { latlang: string }) => {
-  const [weatherHistory, setWeatherHistory] = React.useState<ListItem[] | null>(
-    null
-  );
-  const [loading, setLoading] = React.useState(false);
-  React.useEffect(() => {
-    const getWeatherHistory = async (latlang: string) => {
-      const [lat, lon] = latlang.split(" ");
-
-      setLoading(true);
-
-      try {
-        const history = await fetch(
-          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}`
-        );
-
-        const historyJSON: WeatherHistoryData = await history.json();
-
-        console.log(historyJSON)
-
-        // process weather data
-        const uniqueDates = new Set();
-        let historyData: ListItem[] = [];
-
-        historyJSON.list.map((obj: ListItem) => {
-          const date = obj.dt_txt.split(" ")[0];
-
-          if (!uniqueDates.has(date)) {
-            uniqueDates.add(date);
-            historyData.push(obj);
-          }
-        });
-
-        setWeatherHistory(historyData);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error(error);
-      }
-    };
-
-    getWeatherHistory(latlang);
-  }, [latlang]);
-
-  // let's add weather card component
+  const { weatherHistory, loading } = UseWeatherHistory({ latlang });
   let weatherCards: any = [];
   if (weatherHistory) {
     weatherCards = weatherHistory.map((obj: ListItem) => (
