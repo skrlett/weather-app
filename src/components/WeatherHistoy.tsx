@@ -9,11 +9,11 @@ import ErrorPage from "./ErrorPage";
 const WeatherHistoy = ({ latlang }: { latlang: string }) => {
   const { weatherHistory, loading, error } = useWeatherHistory({ latlang });
 
-  if(error) return <ErrorPage error={error}/>
-  
+  if (error) return <ErrorPage error={error} />;
+
   let weatherCards: any = [];
   if (weatherHistory) {
-    weatherCards = weatherHistory.map((obj: ListItem) => (
+    weatherCards = weatherHistory.slice(1, 5).map((obj: ListItem) => (
       <Grid item sm={6} md={4} lg={3} key={Math.random()}>
         <WeatherCard
           high={k2f(obj.main.temp_max)}
