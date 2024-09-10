@@ -55,7 +55,6 @@ export default function Search({
           onChange={handleSelectedCity}
           inputValue={inputSearchValue}
           onInputChange={handleInputOnChange}
-          id="controllable-states-demo"
           options={cities}
           renderInput={(params) => (
             <TextField

@@ -17,9 +17,11 @@ const ErrorPage = ({ error }: { error: string }) => {
             <Error />
           </div>
           <Typography color={"red"}>{error}</Typography>
-          <IconButton href="/">
-            <ReplayOutlined />
-          </IconButton>
+          <div>
+            <IconButton href="/">
+              <ReplayOutlined />
+            </IconButton>
+          </div>
         </Stack>
       </div>
     </Grid>

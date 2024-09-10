@@ -4,9 +4,13 @@ import { ListItem } from "../utils/api";
 import LoadingScreen from "../utils/LoadingScreen";
 import { dateToWeekday, k2f } from "../utils/utils";
 import useWeatherHistory from "../utils/useWeatherHistory";
+import ErrorPage from "./ErrorPage";
 
 const WeatherHistoy = ({ latlang }: { latlang: string }) => {
-  const { weatherHistory, loading } = useWeatherHistory({ latlang });
+  const { weatherHistory, loading, error } = useWeatherHistory({ latlang });
+
+  if(error) return <ErrorPage error={error}/>
+  
   let weatherCards: any = [];
   if (weatherHistory) {
     weatherCards = weatherHistory.map((obj: ListItem) => (

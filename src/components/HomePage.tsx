@@ -1,4 +1,4 @@
-import { createTheme, CssBaseline, Grid, ThemeProvider } from "@mui/material";
+import { CssBaseline, Grid, ThemeProvider } from "@mui/material";
 import Search from "../components/Search";
 import ClearCache from "../utils/ClearCache";
 import DarkModeToggle from "../utils/DarkModeToggle";
@@ -8,6 +8,7 @@ import useWeather from "../utils/useWeather";
 import ErrorPage from "./ErrorPage";
 import WeatherShowcase from "./WeatherShowcase";
 import WeatherHistoy from "./WeatherHistoy";
+import { darkTheme } from "../utils/ThemeConfig";
 
 const HomePage = () => {
   const {
@@ -22,14 +23,8 @@ const HomePage = () => {
     LatLang,
   } = useWeather();
 
-  const darkTheme = createTheme({
-    palette: {
-      mode: darkMode ? "dark" : "light",
-    },
-  });
-
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={darkTheme(darkMode)}>
       <CssBaseline />
       <Grid container spacing={5}>
         <Grid item xs={1}>

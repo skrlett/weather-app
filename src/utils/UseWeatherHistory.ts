@@ -1,11 +1,14 @@
 import React from "react";
 import { openWeatherApiKey, ListItem, WeatherHistoryData } from "./api";
+import ErrorHandler from "../components/ErrorHandler";
 
 const useWeatherHistory = ({ latlang }: { latlang: string }) => {
   const [weatherHistory, setWeatherHistory] = React.useState<ListItem[] | null>(
     null
   );
   const [loading, setLoading] = React.useState(false);
+
+  const { error, handleError } = ErrorHandler();
 
   React.useEffect(() => {
     const getWeatherHistory = async (latlang: string) => {
@@ -36,14 +39,14 @@ const useWeatherHistory = ({ latlang }: { latlang: string }) => {
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        console.error(error);
+        handleError(error);
       }
     };
 
     getWeatherHistory(latlang);
   }, [latlang]);
 
-  return { weatherHistory, loading };
+  return { weatherHistory, loading, error };
 };
 
 export default useWeatherHistory;
