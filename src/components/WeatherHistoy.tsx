@@ -9,8 +9,6 @@ import ErrorPage from "./ErrorPage";
 const WeatherHistoy = ({ latlang }: { latlang: string }) => {
   const { weatherHistory, loading, error } = useWeatherHistory({ latlang });
 
-  if (error) return <ErrorPage error={error} />;
-
   let weatherCards: any = [];
   if (weatherHistory) {
     weatherCards = weatherHistory.slice(1, 5).map((obj: ListItem) => (
@@ -26,6 +24,8 @@ const WeatherHistoy = ({ latlang }: { latlang: string }) => {
       </Grid>
     ));
   }
+
+  if (error) return <ErrorPage error={error} />;
 
   return (
     <Grid

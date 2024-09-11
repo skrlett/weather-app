@@ -14,7 +14,6 @@ const CurrentWeather: React.FC<weatherDataProps> = ({ weatherData, city }) => {
     <div style={{ width: "25%" }}>
       <Stack alignItems={"center"}>
         <Typography style={{ fontSize: "2rem" }} height={30}>
-          {/* {`${cityName}, ${region}`} */}
           {`${cityName}`}
         </Typography>
         <Typography style={{ fontSize: "4rem" }} height={70}>

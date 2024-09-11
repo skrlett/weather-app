@@ -38,6 +38,7 @@ const useCities = () => {
           (ob: any) => `${ob.city}, ${ob.regionCode}, ${ob.countryCode}`
         )
       );
+
     } catch (error) {
       handleError(error);
     }

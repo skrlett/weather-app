@@ -11,17 +11,20 @@ export default function Search({
 }) {
   const [value, setValue] = React.useState(null);
   const [inputSearchValue, setInputSearchValue] = React.useState("");
-
   const { cities, response, error, loadCities } = useCities();
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      loadCities(inputSearchValue);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [inputSearchValue]);
 
   const handleInputOnChange = (_event: any, searchCity: string) => {
     setInputSearchValue(searchCity);
-  };
-
-  const handleKeyDown = (event: any) => {
-    if (event.key === "Enter") {
-      loadCities(inputSearchValue);
-    }
   };
 
   const handleSelectedCity = (_event: any, newValue: any | string) => {
@@ -29,9 +32,7 @@ export default function Search({
 
     setValue(newValue);
 
-    let city: string = newValue.split(", ")[0];
-    let regionCode: string = newValue.split(", ")[1];
-    let countryCode: string = newValue.split(", ")[2];
+    let [city, regionCode, countryCode] = newValue.split(", ");
 
     if (response) {
       const cityObj = response.filter(
@@ -60,7 +61,7 @@ export default function Search({
             <TextField
               {...params}
               label="Search a City"
-              onKeyDown={handleKeyDown}
+              // onKeyDown={handleKeyDown}
             />
           )}
         />
