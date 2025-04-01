@@ -3,7 +3,7 @@ import WeatherCard from "./WeatherCard";
 import { ListItem } from "../utils/api";
 import LoadingScreen from "../utils/LoadingScreen";
 import { dateToWeekday, k2f } from "../utils/utils";
-import useWeatherHistory from "../utils/useWeatherHistory";
+import useWeatherHistory from "../utils/UseWeatherHistory";
 import ErrorPage from "./ErrorPage";
 
 const WeatherHistoy = ({ latlang }: { latlang: string }) => {
